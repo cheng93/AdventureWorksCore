@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Employees";
+}
+<div ng-app="app">
+    <h2>@ViewData["Title"]</h2>
+
+    <div ng-controller="employeesController as c">
+        <ul>
+            {{ employees }}
+            <li ng-repeat="employee in c.employees">
+                <h2>{{ employee.businessEntityId }}</h2>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@section Scripts {    
+    <script src="~/js/app/employees/employees.module.js"></script>
+    <script src="~/js/app/employees/employees.controller.js"></script>
+    <script src="~/js/app/employees/employees.service.js"></script>
+}
