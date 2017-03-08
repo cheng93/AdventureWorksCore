@@ -7,7 +7,7 @@
 
     employeesService.$inject = ['$http', '$log'];
     
-    function employeesService($http, $log) {
+    function employeesService($http, $log, $q) {
         var service = {
             getEmployees: getEmployees
         };
@@ -19,6 +19,7 @@
                 .then(parseEmployeesResult)
                 .catch(function (message) {
                     $log.log(message);
+                    return $q.reject(message);
                 });
 
             function parseEmployeesResult(data) {
