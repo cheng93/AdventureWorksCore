@@ -14,6 +14,11 @@ namespace AdventureWorks.Web.Controllers
 
         public IActionResult Employee(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+
             return View();
         }
     }
