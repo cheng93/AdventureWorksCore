@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AdventureWorks.Data.Repositories;
-using AdventureWorks.Data.Models;
 
 namespace AdventureWorks.Web
 {
@@ -28,8 +26,7 @@ namespace AdventureWorks.Web
             // Add framework services.
             services.AddMvc();
 
-            services.AddTransient<IAdventureWorks2014Context, AdventureWorks2014Context>();
-            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.RegisterDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
