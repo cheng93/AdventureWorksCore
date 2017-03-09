@@ -10,6 +10,7 @@
     function employeesController($log, employeesService) {
         /* jshint validthis:true */
         var vm = this;
+        vm.loading = true;
 
         activate();
 
@@ -18,6 +19,9 @@
                 .then(function (data) {
                     vm.employees = data;
                     return vm.employees;
+                })
+                .then(function () {
+                    vm.loading = false;
                 });
         }
     }
