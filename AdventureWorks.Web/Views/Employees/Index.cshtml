@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Employees";
 }
-<div ng-app="app">
+<div ng-app="app.employees">
     <h2>@ViewData["Title"]</h2>
     
     <div ng-controller="employeesController as c">
@@ -17,31 +17,17 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>National Id</th>
-                        <th>Login Id</th>
-                        <th>Job Title</th>
-                        <th>Birth Date</th>
-                        <th>Marital Status</th>
-                        <th>Gender</th>
-                        <th>Hire Date</th>
-                        <th>Paid</th>
-                        <th>Vacation Hours</th>
-                        <th>Sick Leave Hours</th>
+                        <th>FirstName</th>
+                        <th>Surname</th>
+                        <th>Job Title</th>                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="employee in c.employees">
                         <td>{{employee.businessEntityId}}</td>
-                        <td>{{employee.nationalIdnumber}}</td>
-                        <td>{{employee.loginId}}</td>
+                        <td>{{employee.person.firstName}}</td>
+                        <td>{{employee.person.lastName}}</td>
                         <td>{{employee.jobTitle}}</td>
-                        <td>{{employee.birthDate | date:dd-MM-yyyy}}</td>
-                        <td>{{employee.maritalStatus}}</td>
-                        <td>{{employee.gender}}</td>
-                        <td>{{employee.hireDate | date:dd-MM-yyyy}}</td>
-                        <td>{{employee.salariedFlag}}</td>
-                        <td>{{employee.vacationHours}}</td>
-                        <td>{{employee.sickLeaveHours}}</td>
                     </tr>
                 </tbody>
             </table>
