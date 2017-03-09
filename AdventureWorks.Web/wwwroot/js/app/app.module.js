@@ -1,11 +1,11 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('app', [
+    angular.module('app.core', [
         // Angular modules 
-        
+        'ngRoute'
         // Custom modules 
-        'app.employees'
+
         // 3rd Party Modules
 
     ]);
