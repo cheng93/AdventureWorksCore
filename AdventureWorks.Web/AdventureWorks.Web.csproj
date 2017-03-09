@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <Content Include="wwwroot\js\app\app.module.js" />
+    <Content Include="wwwroot\js\app\employees\employee.controller.js" />
+    <Content Include="wwwroot\js\app\employees\employee.service.js" />
     <Content Include="wwwroot\js\app\employees\employees.controller.js" />
     <Content Include="wwwroot\js\app\employees\employees.module.js" />
     <Content Include="wwwroot\js\app\employees\employees.service.js" />
