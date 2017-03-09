@@ -18,9 +18,6 @@
             return employeeService.getEmployee($scope.id)
                 .then(function (data) {
                     vm.employee = data;
-                })
-                .then(function () {
-                    console.log(vm.employee);
                 });
         }
     }
