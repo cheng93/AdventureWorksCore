@@ -4,22 +4,26 @@
 
 namespace AdventureWorks.Web.Controllers
 {
+    [Route("[controller]")]
     public class EmployeesController : Controller
     {
         // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Employee(int id)
+        [HttpGet("{id}")]
+        public IActionResult Index(int id)
         {
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("Index");
             }
 
-            return View();
+            ViewBag.Id = id;
+            return View("Employee");
         }
     }
 }
