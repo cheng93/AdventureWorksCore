@@ -5,9 +5,9 @@
         .module('app.employees')
         .service('employeesService', employeesService);
 
-    employeesService.$inject = ['$http', '$log'];
+    employeesService.$inject = ['$http', '$q'];
     
-    function employeesService($http, $log, $q) {
+    function employeesService($http, $q) {
         var service = {
             getEmployees: getEmployees
         };
@@ -17,9 +17,8 @@
         function getEmployees() {
             return $http.get('/api/employees')
                 .then(parseEmployeesResult)
-                .catch(function (message) {
-                    $log.log(message);
-                    return $q.reject(message);
+                .catch(function (e) {
+                    return $q.reject(e.status + ': ' + e.statusText);
                 });
 
             function parseEmployeesResult(data) {
