@@ -26,6 +26,8 @@ namespace AdventureWorks.Web
             // Add framework services.
             services.AddMvc();
 
+            services.AddAutoMapper();
+
             services.RegisterDependencies();
         }
 
