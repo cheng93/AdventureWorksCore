@@ -17,6 +17,6 @@ export class EmployeeService {
 
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Employee)
+            .then(response => response.json() as Employee)
     }
 }
