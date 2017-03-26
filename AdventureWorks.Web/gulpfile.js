@@ -3,10 +3,10 @@ var cleanCss = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 
-var browserify = require('browserify');
+var webpack = require('webpack');
+var config = require('./webpack.config.js');
+
 var rimraf = require('rimraf');
-var tsify = require('tsify');
-var vinyl = require('vinyl-source-stream');
 
 var paths = {
   wwwroot: './wwwroot/',
@@ -22,17 +22,10 @@ var wwwroot = {
 
 var scripts = {
   css: paths.scripts + './**/*.css',
-  js: paths.scripts + './**/*.js'
+  js: paths.scripts + './js/'
 };
 
 var node_modules = [
-  angular = {
-    name: 'angular',
-    base: paths.node_modules + './@angular/core/bundles/',
-    get src() {
-      return this.base + './core.umd.js'
-    }
-  },
   bootstrap = {
     name: 'bootstrap',
     base: paths.node_modules + './bootstrap/dist/',
@@ -64,28 +57,11 @@ gulp.task('css', ['clean:css'], function () {
     .pipe(gulp.dest(wwwroot.css));
 });
 
-gulp.task('js', ['clean:js'], function () {
-  gulp.src(scripts.js)
-    .pipe(uglify())
-    .pipe(concat('script.js'))
-    .pipe(gulp.dest(wwwroot.js));
+gulp.task('ts', ['clean:js'], function (callback) {
+  webpack(config).run(callback);
 });
 
-gulp.task('ts', ['clean:js'], function () {
-  browserify({
-    basedir: '.',
-    debug: true,
-    entries: ['Scripts/js/main.ts'],
-    cache: {},
-    packageCache: {}
-  })
-  .plugin(tsify)
-  .bundle()
-  .pipe(vinyl('bundle.js'))
-  .pipe(gulp.dest(wwwroot.js));
-});
-
-gulp.task('scripts', ['css', 'js', 'ts']);
+gulp.task('scripts', ['css', 'ts']);
 
 gulp.task('copy', ['clean:lib'], function () {
   node_modules.forEach(function (module) {
