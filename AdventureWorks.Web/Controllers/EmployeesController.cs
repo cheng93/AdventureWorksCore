@@ -9,21 +9,10 @@ namespace AdventureWorks.Web.Controllers
     {
         // GET: /<controller>/
         [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Index()
         {
             return View();
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult Index(int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.Id = id;
-            return View("Employee");
         }
     }
 }
