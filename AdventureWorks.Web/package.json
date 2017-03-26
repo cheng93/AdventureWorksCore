@@ -4,9 +4,20 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "angular2": "^2.0.0-beta.21"
+    "@angular/core": "4.0.0",
+    "bootstrap": "latest"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "browserify": "^14.1.0",
+    "gulp": "latest",
+    "gulp-clean-css": "latest",
+    "gulp-concat": "latest",
+    "gulp-uglify": "latest",
+    "rimraf": "latest",
+    "tsify": "^3.0.1",
+    "typescript": "^2.2.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
