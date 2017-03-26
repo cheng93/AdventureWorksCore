@@ -9,12 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\js\app\app.module.js" />
-    <Content Include="wwwroot\js\app\employees\employee.controller.js" />
-    <Content Include="wwwroot\js\app\employees\employee.service.js" />
-    <Content Include="wwwroot\js\app\employees\employees.controller.js" />
-    <Content Include="wwwroot\js\app\employees\employees.module.js" />
-    <Content Include="wwwroot\js\app\employees\employees.service.js" />
+    <Content Include="Scripts\css\site.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Scripts\css\site.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Scripts\js\app.module.js" />
+    <Content Include="Scripts\js\employees\employee.controller.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Scripts\js\employees\employee.service.js" />
+    <Content Include="Scripts\js\employees\employees.controller.js" />
+    <Content Include="Scripts\js\employees\employees.module.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Scripts\js\employees\employees.service.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="5.2.0" />
