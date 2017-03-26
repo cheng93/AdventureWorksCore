@@ -2,9 +2,13 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "~/Views/Shared/_Angular.cshtml";
     ViewData["Title"] = "Employee";
 }
-<div ng-app="app.employees" ng-init="id=@ViewBag.Id">
+
+<my-app></my-app>
+
+@*<div ng-app="app.employees" ng-init="id=@ViewBag.Id">
     <h2>@ViewData["Title"]</h2>
 
     <div ng-controller="employeeController as c">
@@ -29,10 +33,4 @@
             <dd>{{c.employee.sickLeaveHours}}</dd>
         </dl>
     </div>
-</div>
-
-@section Scripts {
-    <script src="~/js/app/employees/employees.module.js"></script>
-    <script src="~/js/app/employees/employee.controller.js"></script>
-    <script src="~/js/app/employees/employee.service.js"></script>
-}
+</div>*@
