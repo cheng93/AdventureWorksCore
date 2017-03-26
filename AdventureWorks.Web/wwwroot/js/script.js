@@ -1,0 +1,7 @@
+!function(){"use strict";angular.module("app.core",[])}();
+function hello(l){console.log("Hello from "+l)}hello("TypeScript");
+!function(){"use strict";function e(e,o){var n=this;n.employee={},function(){o.getEmployee(e.id).then(function(e){n.employee=e})}()}angular.module("app.employees").controller("employeeController",e),e.$inject=["$scope","employeeService"]}();
+!function(){"use strict";function e(e,t){function n(n){function u(e){return e.data}return e.get("/api/employees/"+n).then(u).catch(function(e){return t.reject(e.status+": "+e.statusText)})}return{getEmployee:n}}angular.module("app.employees").factory("employeeService",e),e.$inject=["$http","$q"]}();
+!function(){"use strict";function e(e,n){var o=this;o.loading=!0,function(){n.getEmployees().then(function(e){return o.employees=e,o.employees}).then(function(){o.loading=!1})}()}angular.module("app.employees").controller("employeesController",e),e.$inject=["$log","employeesService"]}();
+!function(){"use strict";angular.module("app.employees",["app.core"])}();
+!function(){"use strict";function e(e,t){function n(){function n(e){return e.data}return e.get("/api/employees").then(n).catch(function(e){return t.reject(e.status+": "+e.statusText)})}return{getEmployees:n}}angular.module("app.employees").service("employeesService",e),e.$inject=["$http","$q"]}();
