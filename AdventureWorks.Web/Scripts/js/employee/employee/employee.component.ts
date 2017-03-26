@@ -10,21 +10,20 @@ import { EmployeeService } from './employee.service';
     providers: [
         EmployeeService
     ],
-    template: "Hello World"
+    templateUrl: './employee.template.html'
 })
 
 export class EmployeeComponent implements OnInit {
-    employee: Employee;
+    employee: Employee = new Employee();
 
     constructor(
         private employeeService: EmployeeService,
-        private route: ActivatedRoute,
-        private location: Location
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
-        this.route.params
-            .switchMap((params: Params) => this.employeeService.getEmployee(+params['id']))
-            .subscribe(e => this.employee = e);
+        let id = +this.route.snapshot.params['id'];
+        this.employeeService.getEmployee(id)
+            .then((e : Employee) => this.employee = e);
     }
 }
