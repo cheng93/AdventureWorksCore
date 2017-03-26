@@ -2,41 +2,8 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "~/Views/Shared/_Angular.cshtml";
     ViewData["Title"] = "Employees";
 }
-<div ng-app="app.employees">
-    <h2>@ViewData["Title"]</h2>
-    
-    <div ng-controller="employeesController as c">
-        <div id="spinner" ng-show="c.loading">
-            <img src="images/ajax-loader.gif" class="ajax-loader" />
-        </div>
 
-        <div ng-hide="c.loading">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>FirstName</th>
-                        <th>Surname</th>
-                        <th>Job Title</th>                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="employee in c.employees">
-                        <td>{{employee.businessEntityId}}</td>
-                        <td>{{employee.person.firstName}}</td>
-                        <td>{{employee.person.lastName}}</td>
-                        <td>{{employee.jobTitle}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-@section Scripts {
-    <script src="~/js/app/employees/employees.module.js"></script>
-    <script src="~/js/app/employees/employees.controller.js"></script>
-    <script src="~/js/app/employees/employees.service.js"></script>
-}
+<my-app></my-app>
