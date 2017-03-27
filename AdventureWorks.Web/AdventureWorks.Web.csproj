@@ -10,6 +10,8 @@
 
   <PropertyGroup>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <PostBuildEvent>gulp build</PostBuildEvent>
+    <PreBuildEvent>npm install</PreBuildEvent>
   </PropertyGroup>
 
   <ItemGroup>
