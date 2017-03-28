@@ -19,9 +19,8 @@ namespace AdventureWorks.Data.Repositories
                 .Include(x => x.BusinessEntity)
                 .SingleOrDefault(x => x.BusinessEntityId == id);
 
-        public IEnumerable<Employee> GetAll() => 
+        public IEnumerable<Employee> GetAll() =>
             _dbContext.Employee
-                .Include(x => x.BusinessEntity)
-                .ToList();
+                .Include(x => x.BusinessEntity);
     }
 }
