@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { EmployeesService } from '../employee/employees/employees.service';
+import { EmployeeService } from '../employee/employee/employee.service';
 import { EmployeeModule } from '../employee/employee.module';
 
 @NgModule({
@@ -20,6 +22,10 @@ import { EmployeeModule } from '../employee/employee.module';
     ],
     bootstrap: [
         AppComponent
+    ],
+    providers: [
+        EmployeesService,
+        EmployeeService
     ]
 })
 export class AppModule { }

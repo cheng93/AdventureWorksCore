@@ -16,10 +16,6 @@ import { EmployeeService } from './employee/employee.service';
     declarations: [
         EmployeesComponent,
         EmployeeComponent
-    ],
-    providers: [
-        EmployeesService,
-        EmployeeService
     ]
 })
 
