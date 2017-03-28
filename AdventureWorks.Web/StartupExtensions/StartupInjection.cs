@@ -2,7 +2,7 @@
 using AdventureWorks.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AdventureWorks.Web
+namespace AdventureWorks.Web.StartupExtensions
 {
     public static class StartupInjection
     {
