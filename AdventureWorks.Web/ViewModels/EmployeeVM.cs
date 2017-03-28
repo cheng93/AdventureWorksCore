@@ -2,9 +2,8 @@
 
 namespace AdventureWorks.Web.ViewModels
 {
-    public class EmployeeVM
+    public class EmployeeVM : PersonVM
     {
-        public int BusinessEntityId { get; set; }
         public string NationalIdnumber { get; set; }
         public string LoginId { get; set; }
         public short? OrganizationLevel { get; set; }
@@ -17,7 +16,5 @@ namespace AdventureWorks.Web.ViewModels
         public short VacationHours { get; set; }
         public short SickLeaveHours { get; set; }
         public bool CurrentFlag { get; set; }
-
-        public PersonVM Person { get; set; }
     }
 }
