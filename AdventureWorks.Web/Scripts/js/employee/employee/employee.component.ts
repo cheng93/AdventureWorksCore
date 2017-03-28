@@ -7,19 +7,18 @@ import { Employee } from './../employee';
 import { EmployeeService } from './employee.service';
 
 @Component({
-    providers: [
-        EmployeeService
-    ],
     templateUrl: './employee.template.html'
 })
 
 export class EmployeeComponent implements OnInit {
-    employee: Employee = new Employee();
+    employee: Employee;
 
     constructor(
         private employeeService: EmployeeService,
         private route: ActivatedRoute
-    ) { }
+    ) { 
+        this.employee = new Employee();
+    }
 
     ngOnInit(): void {
         let id = +this.route.snapshot.params['id'];

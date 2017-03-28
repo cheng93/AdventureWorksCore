@@ -4,9 +4,6 @@ import { Employee } from './../employee';
 import { EmployeesService } from './employees.service';
 
 @Component({
-    providers: [
-        EmployeesService
-    ],
     templateUrl: './employees.template.html'
 })
 
