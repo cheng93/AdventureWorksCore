@@ -1,5 +1,5 @@
 export class Employee {
-    businessEntityId : number;
+    id : number;
     firstName : string;
     lastName : string;
     birthDate : string;
