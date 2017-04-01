@@ -13,14 +13,11 @@ import { EmployeeModule } from '../employee/employee.module';
 import { TitleService } from '../title/title.abstract';
 import { BrowserTitleService } from '../title/title.service';
 
-import { TableModule } from '../table/table.module';
-
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
-        TableModule,
         EmployeeModule,
         AppRoutingModule
     ],
