@@ -7,9 +7,8 @@ import { EmployeesService } from './employees/employees.service';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeService } from './employee/employee.service';
 
-
 @NgModule({
-    imports: [        
+    imports: [
         CommonModule,
         EmployeeRoutingModule
     ],

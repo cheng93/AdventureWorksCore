@@ -1,4 +1,5 @@
-﻿using AdventureWorks.Web.StartupExtensions;
+﻿using AdventureWorks.Web.Configurations;
+using AdventureWorks.Web.StartupExtensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,8 @@ namespace AdventureWorks.Web
             services.AddMvc();
 
             services.AddAutoMapper();
+
+            services.Configure<ConnectionStringsOptions>(Configuration.GetSection("ConnectionStrings"));
 
             services.RegisterDependencies();
         }

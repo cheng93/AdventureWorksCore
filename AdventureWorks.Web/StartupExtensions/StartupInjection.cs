@@ -1,6 +1,8 @@
 ﻿using AdventureWorks.Data.Models;
 using AdventureWorks.Data.Repositories;
+using AdventureWorks.Web.Configurations;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace AdventureWorks.Web.StartupExtensions
 {
@@ -8,7 +10,9 @@ namespace AdventureWorks.Web.StartupExtensions
     {
         public static void RegisterDependencies(this IServiceCollection services)
         {
-            services.AddTransient<IAdventureWorks2014Context, AdventureWorks2014Context>();
+            services.AddScoped<IAdventureWorks2014Context, AdventureWorks2014Context>(sp =>
+                new AdventureWorks2014Context(sp.GetRequiredService<IOptions<ConnectionStringsOptions>>().Value.AdventureWorks2014)
+            );
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
         }
     }

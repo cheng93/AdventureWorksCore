@@ -3,8 +3,12 @@
     "allowJs": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "sourceMap": true,
     "target": "es6"
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
