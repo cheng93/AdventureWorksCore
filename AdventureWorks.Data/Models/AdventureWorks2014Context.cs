@@ -79,10 +79,16 @@ namespace AdventureWorks.Data.Models
         // Unable to generate entity type for table 'Production.ProductDocument'. Please see the warning messages.
         // Unable to generate entity type for table 'Production.Document'. Please see the warning messages.
 
+        private readonly string _connectionString;
+
+        public AdventureWorks2014Context(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=(local)\SQLEXPRESS;Database=AdventureWorks2014;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(_connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
