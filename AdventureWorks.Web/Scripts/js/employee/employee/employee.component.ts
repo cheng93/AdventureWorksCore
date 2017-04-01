@@ -29,7 +29,7 @@ export class EmployeeComponent implements OnInit {
         this.employeeService.getEmployee(id)
             .then((e : Employee) => this.employee = e)
             .then(() => {
-                var title = `${this.employee.firstName}${this.employee.lastName}`;
+                var title = `${this.employee.firstName} ${this.employee.lastName}`;
                 this.titleService.setTitle(title)
             });
     }
