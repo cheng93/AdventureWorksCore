@@ -1,3 +1,4 @@
+<h2>Employees</h2>
 <div>
     <table class="table table-hover">
         <thead>
@@ -9,11 +10,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let employee of employees">
-                <td>{{employee.id}}</td>
-                <td>{{employee.firstName}}</td>
-                <td>{{employee.lastName}}</td>
-                <td>{{employee.jobTitle}}</td>
+            <tr *ngFor="let employee of employees; let i = index">
+                <ng-template tdAnchor>{{employee.id}}</ng-template>
+                <ng-template tdAnchor>{{employee.firstName}}</ng-template>
+                <ng-template tdAnchor>{{employee.lastName}}</ng-template>
+                <ng-template tdAnchor>{{employee.jobTitle}}</ng-template>                
             </tr>
         </tbody>
     </table>

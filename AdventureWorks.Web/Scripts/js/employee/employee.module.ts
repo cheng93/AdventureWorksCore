@@ -7,10 +7,12 @@ import { EmployeesService } from './employees/employees.service';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeService } from './employee/employee.service';
 
+import { TableModule } from '../table/table.module';
 
 @NgModule({
     imports: [        
         CommonModule,
+        TableModule,
         EmployeeRoutingModule
     ],
     declarations: [
