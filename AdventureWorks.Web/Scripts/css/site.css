@@ -35,3 +35,14 @@ textarea {
         display: none;
     }
 }
+
+.table>tbody>tr>td.anchor {
+    padding: 0px;
+}
+.table>tbody>tr>td.anchor>a{
+    display: block;
+    padding: 8px;
+    color: inherit;
+    text-decoration: inherit;
+    cursor: default;
+}
