@@ -10,11 +10,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let employee of employees; let i = index">
-                <ng-template tdAnchor>{{employee.id}}</ng-template>
-                <ng-template tdAnchor>{{employee.firstName}}</ng-template>
-                <ng-template tdAnchor>{{employee.lastName}}</ng-template>
-                <ng-template tdAnchor>{{employee.jobTitle}}</ng-template>                
+            <tr *ngFor="let employee of employees">
+                <td class="anchor"><a routerLink="/employees/{{employee.id}}">{{employee.id}}</a></td>
+                <td class="anchor"><a routerLink="/employees/{{employee.id}}">{{employee.firstName}}</a></td>
+                <td class="anchor"><a routerLink="/employees/{{employee.id}}">{{employee.lastName}}</a></td>
+                <td class="anchor"><a routerLink="/employees/{{employee.id}}">{{employee.jobTitle}}</a></td>                
             </tr>
         </tbody>
     </table>
