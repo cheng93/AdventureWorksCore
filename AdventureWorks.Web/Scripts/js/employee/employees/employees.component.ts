@@ -27,4 +27,8 @@ export class EmployeesComponent implements OnInit {
             .then((e: Employee[]) => this.employees = e)
             .then(() => this.titleService.setTitle('Employees'));
     }
+
+    getRowClass(rowData, index) : string {
+        return "anchor";
+    }
 }

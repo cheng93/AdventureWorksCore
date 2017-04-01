@@ -1,21 +1,32 @@
 <h2>Employees</h2>
 <div>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>FirstName</th>
-                <th>Surname</th>
-                <th>Job Title</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let employee of employees">
-                <td class="anchor"><a routerLink="/employees/{{employee.id}}">{{employee.id}}</a></td>
-                <td class="anchor"><a routerLink="/employees/{{employee.id}}">{{employee.firstName}}</a></td>
-                <td class="anchor"><a routerLink="/employees/{{employee.id}}">{{employee.lastName}}</a></td>
-                <td class="anchor"><a routerLink="/employees/{{employee.id}}">{{employee.jobTitle}}</a></td>                
-            </tr>
-        </tbody>
-    </table>
+    <div class="ui-widget-header">
+        <div class="flex">
+            <i class="fa fa-search"></i>
+            <input #gb type="text">
+        </div>
+    </div>
+    <p-dataTable [value]="employees" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [rowHover]="true"
+        [rowStyleClass]="getRowClass" [responsive]="true" [globalFilter]="gb">
+        <p-column field="id" header="Id">
+            <ng-template let-col let-employee="rowData" pTemplate="body">
+                <a routerLink="/employees/{{employee.id}}">{{employee[col.field]}}</a>
+            </ng-template>
+        </p-column>
+        <p-column field="firstName" header="First Name">
+            <ng-template let-col let-employee="rowData" pTemplate="body">
+                <a routerLink="/employees/{{employee.id}}">{{employee[col.field]}}</a>
+            </ng-template>
+        </p-column>
+        <p-column field="lastName" header="Surname">
+            <ng-template let-col let-employee="rowData" pTemplate="body">
+                <a routerLink="/employees/{{employee.id}}">{{employee[col.field]}}</a>
+            </ng-template>
+        </p-column>
+        <p-column field="jobTitle" header="Job Title">
+            <ng-template let-col let-employee="rowData" pTemplate="body">
+                <a routerLink="/employees/{{employee.id}}">{{employee[col.field]}}</a>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
 </div>
