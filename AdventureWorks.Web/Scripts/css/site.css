@@ -36,13 +36,32 @@ textarea {
     }
 }
 
-.table>tbody>tr>td.anchor {
+body .ui-datatable .ui-datatable-data tr.anchor td, tr.anchor td {
     padding: 0px;
 }
-.table>tbody>tr>td.anchor>a{
+tr.anchor>td * a{
     display: block;
-    padding: 8px;
+    padding: .75em;
     color: inherit;
     text-decoration: inherit;
-    cursor: default;
+    cursor: inherit;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.ui-widget-header .flex i {
+    flex: 0;
+}
+
+.ui-widget-header .flex input {
+    flex: 1;
+    width: 100%;
+}
+
+.ui-widget-header .flex > * {
+    margin: .5em .5em;
 }
