@@ -52,7 +52,7 @@ gulp.task('clean:lib', function (cb) {
 
 gulp.task('css', ['clean:css'], function () {
   gulp.src(scripts.css)
-    .pipe(concat('sites.min.css'))
+    .pipe(concat('sites.css'))
     .pipe(cleanCss())
     .pipe(gulp.dest(wwwroot.css));
 });
