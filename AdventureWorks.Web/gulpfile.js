@@ -28,13 +28,34 @@ var scripts = {
 var node_modules = [
   bootstrap = {
     name: 'bootstrap',
-    base: paths.node_modules + './bootstrap/dist/',
-    get src() {
-      return [
-        this.base + './css/*.css',
-        this.base + './fonts/*.*',
+    css: [
+      paths.node_modules + './bootstrap/dist/css/bootstrap.css'
+    ],
+    misc: {
+      folder: 'fonts',
+      src: [
+        paths.node_modules + './bootstrap/dist/fonts/*.*',
       ]
     }
+  },
+  fontawesome = {
+    name: 'font-awesome',
+    css: [
+      paths.node_modules + './font-awesome/css/font-awesome.css'
+    ],
+    misc: {
+      folder: 'fonts',
+      src: [
+        paths.node_modules + './font-awesome/fonts/*.*'
+      ]
+    }
+  },
+  primeng = {
+    name: 'primeng',
+    css: [
+      paths.node_modules + './primeng/components/**/*.css',
+      paths.node_modules + './primeng/resources/themes/bootstrap/*.css',
+    ]
   }
 ]
 
@@ -63,11 +84,24 @@ gulp.task('ts', ['clean:js'], function (callback) {
 
 gulp.task('scripts', ['css', 'ts']);
 
-gulp.task('copy', ['clean:lib'], function () {
+gulp.task('lib:css', ['clean:lib'], function () {
   node_modules.forEach(function (module) {
-    gulp.src(module.src, { base: module.base })
-      .pipe(gulp.dest(wwwroot.lib + module.name))
+    gulp.src(module.css)
+      .pipe(concat(module.name + '.css'))
+      .pipe(cleanCss())
+      .pipe(gulp.dest(wwwroot.lib + module.name + '/css/'))
   }, this);
 });
 
-gulp.task('build', ['scripts', 'copy']);
+gulp.task('lib:misc', ['clean:lib'], function () {
+  node_modules.forEach(function (module) {
+    if (module.misc) {
+      gulp.src(module.misc.src)
+        .pipe(gulp.dest(wwwroot.lib + module.name + '/' + module.misc.folder + '/'))
+    }
+  }, this);
+});
+
+gulp.task('lib', ['lib:css', 'lib:misc']);
+
+gulp.task('build', ['scripts', 'lib']);
