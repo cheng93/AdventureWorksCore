@@ -2,11 +2,11 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { EmployeesComponent } from './employees/employees.component'
-import { EmployeeComponent } from './employee/employee.component'
+import { EmployeeGridComponent } from './employee-grid/employee-grid.component'
 
 const employeeRoutes: Routes = [
     { path: 'employees', component: EmployeesComponent },
-    { path: 'employees/:id', component: EmployeeComponent },
+    { path: 'employees/:id', component: EmployeeGridComponent },
     { path: 'employees/**', redirectTo: 'employees'}
 ];
 
