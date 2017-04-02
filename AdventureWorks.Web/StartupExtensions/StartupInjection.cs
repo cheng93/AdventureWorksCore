@@ -13,7 +13,9 @@ namespace AdventureWorks.Web.StartupExtensions
             services.AddScoped<IAdventureWorks2014Context, AdventureWorks2014Context>(sp =>
                 new AdventureWorks2014Context(sp.GetRequiredService<IOptions<ConnectionStringsOptions>>().Value.AdventureWorks2014)
             );
-            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeDepartmentHistoryRepository, EmployeeRepository>();
         }
     }
 }
