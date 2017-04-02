@@ -1,0 +1,14 @@
+<p-dataTable [value]="departmentHistories" [rowHover]="true" [responsive]="true" [sortField]="start" [sortOrder]="-1">
+    <p-column field="department.name" header="Name"></p-column>
+    <p-column field="department.groupName" header="Group Name"></p-column>
+    <p-column field="start" header="Start">
+        <ng-template let-col let-dh="rowData" pTemplate="body">
+            {{dh[col.field] | date: 'dd MMM yyyy'}}
+        </ng-template>
+    </p-column>
+    <p-column field="end" header="End">
+        <ng-template let-col let-dh="rowData" pTemplate="body">
+            {{dh[col.field] | date: 'dd MMM yyyy'}}
+        </ng-template>
+    </p-column>
+</p-dataTable>
