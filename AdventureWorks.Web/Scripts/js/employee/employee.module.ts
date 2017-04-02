@@ -5,9 +5,9 @@ import { DataTableModule, SharedModule } from 'primeng/primeng';
 
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeesComponent } from './employees/employees.component';
-import { EmployeesService } from './employees/employees.service';
 import { EmployeeComponent } from './employee/employee.component';
-import { EmployeeService } from './employee/employee.service';
+import { EmployeeDepartmentHistoryComponent } from './employee-department-histories/employee-department-histories.component';
+import { EmployeeGridComponent } from './employee-grid/employee-grid.component';
 
 @NgModule({
     imports: [
@@ -18,7 +18,9 @@ import { EmployeeService } from './employee/employee.service';
     ],
     declarations: [
         EmployeesComponent,
-        EmployeeComponent
+        EmployeeComponent,
+        EmployeeDepartmentHistoryComponent,
+        EmployeeGridComponent
     ]
 })
 
