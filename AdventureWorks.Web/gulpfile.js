@@ -53,7 +53,7 @@ var node_modules = [
   primeng = {
     name: 'primeng',
     css: [
-      paths.node_modules + './primeng/components/**/*.css',
+      paths.node_modules + './primeng/resources/primeng.css',
       paths.node_modules + './primeng/resources/themes/bootstrap/*.css',
     ]
   }

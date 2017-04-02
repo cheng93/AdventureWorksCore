@@ -1,24 +1,20 @@
-﻿<h2>{{employee.firstName}} {{employee.lastName}}</h2>
-<div>
-    <dl class="dl-horizontal">
-        <dt>First Name</dt>
-        <dd>{{employee.firstName}}</dd>
-        <dt>Surname</dt>
-        <dd>{{employee.lastName}}</dd>
-        <dt>Date of Birth</dt>
-        <dd>{{employee.birthDate | date:dd-MM-yyyy}}</dd>
-        <dt>Gender</dt>
-        <dd>{{employee.gender}}</dd>
-        <dt>National Id</dt>
-        <dd>{{employee.nationalIdnumber}}</dd>
-        <dt>Login Id</dt>
-        <dd>{{employee.loginId}}</dd>
-        <dt>Hired Date</dt>
-        <dd>{{employee.hireDate | date:dd-MM-yyyy}}</dd>
-        <dt>Vacation Hours</dt>
-        <dd>{{employee.vacationHours}}</dd>
-        <dt>Sick Leave Hours</dt>
-        <dd>{{employee.sickLeaveHours}}</dd>
-    </dl>
-</div>
-<a class="btn btn-default" routerLink="/employees">Back</a>
+﻿<dl class="dl-horizontal">
+    <dt>First Name</dt>
+    <dd>{{employee.firstName}}</dd>
+    <dt>Surname</dt>
+    <dd>{{employee.lastName}}</dd>
+    <dt>Date of Birth</dt>
+    <dd>{{employee.birthDate | date: 'dd MMM yyyy'}}</dd>
+    <dt>Gender</dt>
+    <dd>{{employee.gender}}</dd>
+    <dt>National Id</dt>
+    <dd>{{employee.nationalIdnumber}}</dd>
+    <dt>Login Id</dt>
+    <dd>{{employee.loginId}}</dd>
+    <dt>Hired Date</dt>
+    <dd>{{employee.hireDate | date: 'dd MMM yyyy'}}</dd>
+    <dt>Vacation Hours</dt>
+    <dd>{{employee.vacationHours}}</dd>
+    <dt>Sick Leave Hours</dt>
+    <dd>{{employee.sickLeaveHours}}</dd>
+</dl>

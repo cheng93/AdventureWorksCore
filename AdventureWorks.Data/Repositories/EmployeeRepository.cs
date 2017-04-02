@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AdventureWorks.Data.Repositories
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository, IEmployeeDepartmentHistoryRepository
     {
         private readonly IAdventureWorks2014Context _dbContext;
 
@@ -22,5 +22,10 @@ namespace AdventureWorks.Data.Repositories
         public IEnumerable<Employee> GetAll() =>
             _dbContext.Employee
                 .Include(x => x.BusinessEntity);
+
+        public IEnumerable<EmployeeDepartmentHistory> GetHistory(int employeeId) =>
+            _dbContext.EmployeeDepartmentHistory
+                .Include(x => x.Department)
+                .Where(x => x.BusinessEntityId == employeeId);
     }
 }

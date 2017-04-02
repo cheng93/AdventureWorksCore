@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { EmployeesService } from '../employee/employees/employees.service';
 import { EmployeeService } from '../employee/employee/employee.service';
+import { EmployeeDepartmentHistoryService } from '../employee/employee-department-histories/employee-department-histories.service';
 import { EmployeeModule } from '../employee/employee.module';
 
 import { TitleService } from '../title/title.abstract';
@@ -30,6 +31,7 @@ import { BrowserTitleService } from '../title/title.service';
     providers: [
         EmployeesService,
         EmployeeService,
+        EmployeeDepartmentHistoryService,
         { provide: TitleService, useClass: BrowserTitleService }
     ]
 })
