@@ -15,11 +15,17 @@ namespace AdventureWorks.Web.Controllers.Api
     {
         private readonly IEmployeeRepository _employeeRepository;
 
+        private readonly IEmployeeDepartmentHistoryRepository _employeeDepartmentHistoryRepository;
+
         private readonly IMapper _mapper;
 
-        public EmployeesController(IEmployeeRepository employeeRepository, IMapper mapper)
+        public EmployeesController(
+            IEmployeeRepository employeeRepository,
+            IEmployeeDepartmentHistoryRepository employeeDepartmentHistoryRepository,
+            IMapper mapper)
         {
             _employeeRepository = employeeRepository;
+            _employeeDepartmentHistoryRepository = employeeDepartmentHistoryRepository;
             _mapper = mapper;
         }
 
@@ -27,19 +33,28 @@ namespace AdventureWorks.Web.Controllers.Api
         [HttpGet]
         public JsonResult Get()
         {
-            var mapped = _employeeRepository
+            var data = _employeeRepository
                 .GetAll()
-                .ToList()
-                .Select(x => Map(x));
-            return new JsonResult(mapped);
+                .ToList();
+            return new JsonResult(data.Select(x => Map(x)));
         }
 
         // GET api/employees/5
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            var mapped = Map(_employeeRepository.Get(id));
-            return new JsonResult(mapped);
+            var data = _employeeRepository.Get(id);
+            return new JsonResult(Map(data));
+        }
+
+        // GET api/employees/5/department-histories
+        [HttpGet("{id}/department-histories")]
+        public JsonResult GetDepartmentHistories(int id)
+        {
+            var data = _employeeDepartmentHistoryRepository
+                .GetHistory(id)
+                .ToList();
+            return new JsonResult(data.Select(x => Map(x)));
         }
 
         private EmployeeVM Map(Employee employee)
@@ -65,6 +80,24 @@ namespace AdventureWorks.Web.Controllers.Api
                 VacationHours = employee.VacationHours,
                 SickLeaveHours = employee.SickLeaveHours,
                 CurrentFlag = employee.CurrentFlag
+            };
+
+        private EmployeeDepartmentHistoryVM Map(EmployeeDepartmentHistory employeeDepartmentHistory)
+            => new EmployeeDepartmentHistoryVM()
+            {
+                EmployeeId = employeeDepartmentHistory.BusinessEntityId,
+                Department = Map(employeeDepartmentHistory.Department),
+                Start = employeeDepartmentHistory.StartDate,
+                End = employeeDepartmentHistory.EndDate
+            };
+
+        private DepartmentVM Map(Department department)
+            => new DepartmentVM()
+            {
+                Id = department.DepartmentId,
+
+                Name = department.Name,
+                GroupName = department.GroupName
             };
     }
 }
