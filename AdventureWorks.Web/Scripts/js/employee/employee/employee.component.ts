@@ -3,12 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
 
-import { Employee } from './../employee';
+import { Employee } from './../employee.models';
 import { EmployeeService } from './employee.service';
 
 import { TitleService } from '../../title/title.abstract';
 
 @Component({
+    selector: 'employee',
     templateUrl: './employee.template.html'
 })
 

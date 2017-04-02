@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Employee } from './../employee';
+import { Employee } from './../employee.models';
 
 
 @Injectable()
