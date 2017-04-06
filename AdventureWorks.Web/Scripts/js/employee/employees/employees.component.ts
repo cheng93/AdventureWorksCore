@@ -28,7 +28,7 @@ export class EmployeesComponent implements OnInit {
             .then(() => this.titleService.setTitle('Employees'));
     }
 
-    getRowClass(rowData, index) : string {
+    getRowClass(rowData : any, index : number) : string {
         return "anchor";
     }
 }

@@ -2,7 +2,6 @@
   "name": "adventureworks",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "dependencies": {
     "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
@@ -13,7 +12,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
-    "bootstrap": "latest",
+    "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
     "primeng": "^4.0.0-rc.2",
     "reflect-metadata": "^0.1.10",
@@ -23,20 +22,20 @@
   "devDependencies": {
     "@types/node": "^7.0.11",
     "angular2-template-loader": "^0.6.2",
-    "gulp": "latest",
-    "gulp-clean-css": "latest",
-    "gulp-concat": "latest",
-    "gulp-uglify": "latest",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
     "html-loader": "^0.4.5",
-    "rimraf": "latest",
+    "rimraf": "^2.6.1",
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.1",
     "webpack": "^2.3.2",
     "webpack-merge": "^4.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf wwwroot/*",
+    "build": "npm run clean && webpack"
   },
-  "author": "",
+  "author": "cheng93",
   "license": "ISC"
 }

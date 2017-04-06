@@ -1,12 +1,20 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var path = './Scripts/js/';
+var root = './Scripts/js/';
 
 module.exports = {
   entry: {
-    'polyfills': path + 'polyfills.ts',
-    'vendor': path + 'vendor.ts',
-    'bundle': path + 'main.ts'
+    'polyfills': root + 'polyfills.ts',
+    'vendor': root + 'vendor.ts',
+    'app': root + 'main.ts'
+  },
+
+  output: {
+    path: path.resolve(__dirname, '../wwwroot/'),
+    publicPath: '/../',
+    filename: './js/[name].js'
   },
 
   resolve: {
@@ -16,25 +24,35 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        loaders: [
-          {
-            loader: 'ts-loader'
-          },
-          'angular2-template-loader'
-        ]
+        test: /\.tsx?$/,
+        loaders: ['ts-loader', 'angular2-template-loader']
       },
       {
         test: /\.html$/,
         loader: 'html-loader'
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          use: "css-loader"
+        })
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: "file-loader?name=fonts/[name].[ext]"
+      },
+      {
+        test: /\.(png|gif)$/,
+        loader: "file-loader?name=images/[name].[ext]"
       }
     ]
   },
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['bundle', 'vendor', 'polyfills'],
+      name: ['app', 'vendor', 'polyfills'],
       minChunks: Infinity
-    })
+    }),
+    new ExtractTextPlugin('./css/[name].css')
   ]
 };
