@@ -1,4 +1,5 @@
 ﻿import { NgModule } from '@angular/core';
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -32,7 +33,9 @@ import { BrowserTitleService } from '../title/title.service';
         EmployeesService,
         EmployeeService,
         EmployeeDepartmentHistoryService,
-        { provide: TitleService, useClass: BrowserTitleService }
+        { provide: TitleService, useClass: BrowserTitleService },
+        Location,
+        { provide: LocationStrategy, useClass: PathLocationStrategy }
     ]
 })
 export class AppModule { }
