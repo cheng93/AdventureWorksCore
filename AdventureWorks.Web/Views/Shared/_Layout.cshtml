@@ -1,8 +1,7 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    @Html.Partial("_Head.cshtml")
+    @RenderSection("head", required: true)
 </head>
 <body>
     @Html.Partial("_NavBar.cshtml")
@@ -14,6 +13,6 @@
         </footer>
     </div>
 
-    @RenderSection("Scripts", required: false)
+    @RenderSection("js", required: false)
 </body>
 </html>
