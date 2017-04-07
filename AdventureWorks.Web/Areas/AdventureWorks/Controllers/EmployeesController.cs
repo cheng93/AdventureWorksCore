@@ -2,9 +2,10 @@
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace AdventureWorks.Web.Controllers
+namespace AdventureWorks.Web.Areas.AdventureWorks.Controllers
 {
-    [Route("[controller]")]
+    [Area("AdventureWorks")]
+    [Route("[area]/[controller]")]
     public class EmployeesController : Controller
     {
         // GET: /<controller>/

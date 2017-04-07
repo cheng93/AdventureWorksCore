@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using AdventureWorks.Data.Repositories;
 using AutoMapper;
 using AdventureWorks.Web.ViewModels;
@@ -8,9 +7,10 @@ using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace AdventureWorks.Web.Controllers.Api
+namespace AdventureWorks.Web.Areas.AdventureWorks.Controllers.Api
 {
-    [Route("api/[controller]")]
+    [Area("AdventureWorks")]
+    [Route("[area]/api/[controller]")]
     public class EmployeesController : Controller
     {
         private readonly IEmployeeRepository _employeeRepository;
