@@ -1,10 +1,13 @@
-﻿using AdventureWorks.Web.Configurations;
-using AdventureWorks.Web.StartupExtensions;
+﻿using AdventureWorks.Web.Autofac;
+using AdventureWorks.Web.Configurations;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace AdventureWorks.Web
 {
@@ -22,21 +25,33 @@ namespace AdventureWorks.Web
 
         public IConfigurationRoot Configuration { get; }
 
+        private IContainer _container;
+
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddMvc();
-
-            services.AddAutoMapper();
-
+            
             services.Configure<ConnectionStringsOptions>(Configuration.GetSection("ConnectionStrings"));
+            
+            var builder = new ContainerBuilder();
 
-            services.RegisterDependencies();
+            builder.AddModules();
+
+            builder.Populate(services);
+
+            _container = builder.Build();
+
+            return new AutofacServiceProvider(_container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(
+            IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory, 
+            IApplicationLifetime appLifetime)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -66,6 +81,8 @@ namespace AdventureWorks.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            appLifetime.ApplicationStopped.Register(() => _container.Dispose());
         }
     }
 }
