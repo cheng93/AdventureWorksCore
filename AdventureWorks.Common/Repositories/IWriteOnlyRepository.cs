@@ -1,4 +1,4 @@
-﻿namespace AdventureWorks.Data.Repositories.Common
+﻿namespace AdventureWorks.Common.Repositories
 {
     public interface IWriteOnlyRepository<TEntity, TKey>
         where TEntity : class

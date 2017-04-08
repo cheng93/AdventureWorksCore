@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AdventureWorks.Common\AdventureWorks.Common.csproj" />
+  </ItemGroup>
+
 </Project>
