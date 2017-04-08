@@ -31,7 +31,7 @@ namespace WideWorldImporters.Data.Models
         public virtual ICollection<Invoices> Invoices { get; set; }
         public virtual ICollection<OrderLines> OrderLines { get; set; }
         public virtual Orders BackorderOrder { get; set; }
-        public virtual ICollection<Orders> InverseBackorderOrder { get; set; }
+        //public virtual ICollection<Orders> InverseBackorderOrder { get; set; }
         public virtual People ContactPerson { get; set; }
         public virtual Customers Customer { get; set; }
         public virtual People LastEditedByNavigation { get; set; }

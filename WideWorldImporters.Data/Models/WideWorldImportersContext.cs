@@ -799,10 +799,10 @@ namespace WideWorldImporters.Data.Models
 
                 entity.Property(e => e.SalespersonPersonId).HasColumnName("SalespersonPersonID");
 
-                entity.HasOne(d => d.BackorderOrder)
-                    .WithMany(p => p.InverseBackorderOrder)
-                    .HasForeignKey(d => d.BackorderOrderId)
-                    .HasConstraintName("FK_Sales_Orders_BackorderOrderID_Sales_Orders");
+                //entity.HasOne(d => d.BackorderOrder)
+                //    .WithMany(p => p.InverseBackorderOrder)
+                //    .HasForeignKey(d => d.BackorderOrderId)
+                //    .HasConstraintName("FK_Sales_Orders_BackorderOrderID_Sales_Orders");
 
                 entity.HasOne(d => d.ContactPerson)
                     .WithMany(p => p.OrdersContactPerson)
