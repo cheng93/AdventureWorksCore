@@ -3,6 +3,8 @@ using AdventureWorks.Data.Repositories;
 using AdventureWorks.Web.Configurations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using WideWorldImporters.Data.Models;
+using WideWorldImporters.Data.Repositories;
 
 namespace AdventureWorks.Web.StartupExtensions
 {
@@ -16,6 +18,13 @@ namespace AdventureWorks.Web.StartupExtensions
 
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeDepartmentHistoryRepository, EmployeeRepository>();
+
+
+            services.AddScoped<WideWorldImportersContext, WideWorldImportersContext>(sp =>
+                new WideWorldImportersContext(sp.GetRequiredService<IOptions<ConnectionStringsOptions>>().Value.WideWorldImporters)
+            );
+
+            services.AddScoped<IOrderRepository, OrderRepository>();
         }
     }
 }
