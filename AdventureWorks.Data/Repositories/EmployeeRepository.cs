@@ -7,9 +7,9 @@ namespace AdventureWorks.Data.Repositories
 {
     public class EmployeeRepository : IEmployeeRepository, IEmployeeDepartmentHistoryRepository
     {
-        private readonly IAdventureWorks2014Context _dbContext;
+        private readonly AdventureWorks2014Context _dbContext;
 
-        public EmployeeRepository(IAdventureWorks2014Context dbContext)
+        public EmployeeRepository(AdventureWorks2014Context dbContext)
         {
             _dbContext = dbContext;
         }

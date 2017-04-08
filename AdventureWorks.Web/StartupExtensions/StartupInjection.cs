@@ -10,7 +10,7 @@ namespace AdventureWorks.Web.StartupExtensions
     {
         public static void RegisterDependencies(this IServiceCollection services)
         {
-            services.AddScoped<IAdventureWorks2014Context, AdventureWorks2014Context>(sp =>
+            services.AddScoped<AdventureWorks2014Context, AdventureWorks2014Context>(sp =>
                 new AdventureWorks2014Context(sp.GetRequiredService<IOptions<ConnectionStringsOptions>>().Value.AdventureWorks2014)
             );
 
