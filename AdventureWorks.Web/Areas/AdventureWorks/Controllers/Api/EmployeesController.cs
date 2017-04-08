@@ -17,16 +17,12 @@ namespace AdventureWorks.Web.Areas.AdventureWorks.Controllers.Api
 
         private readonly IEmployeeDepartmentHistoryRepository _employeeDepartmentHistoryRepository;
 
-        private readonly IMapper _mapper;
-
         public EmployeesController(
             IEmployeeRepository employeeRepository,
-            IEmployeeDepartmentHistoryRepository employeeDepartmentHistoryRepository,
-            IMapper mapper)
+            IEmployeeDepartmentHistoryRepository employeeDepartmentHistoryRepository)
         {
             _employeeRepository = employeeRepository;
             _employeeDepartmentHistoryRepository = employeeDepartmentHistoryRepository;
-            _mapper = mapper;
         }
 
         // GET: api/employees
