@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace AdventureWorks.Data.Models
 {
-    public partial class AdventureWorks2014Context : DbContext, IAdventureWorks2014Context
+    public partial class AdventureWorks2014Context : DbContext
     {
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<AddressType> AddressType { get; set; }

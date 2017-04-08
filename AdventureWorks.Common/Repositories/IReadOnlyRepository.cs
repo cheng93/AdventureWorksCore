@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AdventureWorks.Data.Repositories.Common
+namespace AdventureWorks.Common.Repositories
 {
     public interface IReadOnlyRepository<TEntity, in TKey>
         where TEntity : class

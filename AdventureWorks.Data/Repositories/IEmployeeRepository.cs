@@ -1,5 +1,5 @@
-﻿using AdventureWorks.Data.Models;
-using AdventureWorks.Data.Repositories.Common;
+﻿using AdventureWorks.Common.Repositories;
+using AdventureWorks.Data.Models;
 
 namespace AdventureWorks.Data.Repositories
 {
