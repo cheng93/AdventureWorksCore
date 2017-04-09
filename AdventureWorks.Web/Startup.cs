@@ -1,5 +1,6 @@
 ﻿using AdventureWorks.Web.Autofac;
 using AdventureWorks.Web.Configurations;
+using AdventureWorks.Web.Middleware;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Sinks.Elasticsearch;
 using System;
 
 namespace AdventureWorks.Web
@@ -43,6 +46,14 @@ namespace AdventureWorks.Web
 
             _container = builder.Build();
 
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://localhost:9200"))
+                {
+                    AutoRegisterTemplate = true,
+                })
+                .CreateLogger();
+
             return new AutofacServiceProvider(_container);
         }
 
@@ -53,8 +64,7 @@ namespace AdventureWorks.Web
             ILoggerFactory loggerFactory, 
             IApplicationLifetime appLifetime)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            loggerFactory.AddSerilog();
 
             if (env.IsDevelopment())
             {
@@ -68,6 +78,8 @@ namespace AdventureWorks.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseMiddleware<SerilogMiddleware>();
 
             app.UseStaticFiles();
 
