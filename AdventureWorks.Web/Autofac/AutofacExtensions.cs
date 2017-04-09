@@ -7,6 +7,7 @@ namespace AdventureWorks.Web.Autofac
     {
         public static void AddModules(this ContainerBuilder builder)
         {
+            builder.RegisterModule<MediatorModule>();
             builder.RegisterModule<AdventureWorksModule>();
             builder.RegisterModule<WideWorldImportersModule>();
         }
