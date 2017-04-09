@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using AdventureWorks.Data.Repositories;
-using AutoMapper;
-using AdventureWorks.Web.ViewModels;
+﻿using AdventureWorks.Data.Commands.Employee.GetEmployee;
+using AdventureWorks.Data.Commands.Employee.GetEmployeeHistory;
+using AdventureWorks.Data.Commands.Employee.GetEmployees;
 using AdventureWorks.Data.Models;
+using AdventureWorks.Web.Controllers;
+using AdventureWorks.Web.ViewModels;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,46 +15,47 @@ namespace AdventureWorks.Web.Areas.AdventureWorks.Controllers.Api
 {
     [Area("AdventureWorks")]
     [Route("[area]/api/[controller]")]
-    public class EmployeesController : Controller
+    public class EmployeesController : ApiController
     {
-        private readonly IEmployeeRepository _employeeRepository;
-
-        private readonly IEmployeeDepartmentHistoryRepository _employeeDepartmentHistoryRepository;
-
-        public EmployeesController(
-            IEmployeeRepository employeeRepository,
-            IEmployeeDepartmentHistoryRepository employeeDepartmentHistoryRepository)
+        public EmployeesController(IMediator mediator)
+            : base(mediator)
         {
-            _employeeRepository = employeeRepository;
-            _employeeDepartmentHistoryRepository = employeeDepartmentHistoryRepository;
         }
 
         // GET: api/employees
         [HttpGet]
-        public JsonResult Get()
+        public async Task<JsonResult> Get()
         {
-            var data = _employeeRepository
-                .GetAll()
-                .ToList();
-            return new JsonResult(data.Select(x => Map(x)));
+            var request = new GetEmployeesRequest();
+            var response = await Mediator.Send(request);
+
+            return new JsonResult(response.Employees.Select(x => Map(x)));
         }
 
         // GET api/employees/5
         [HttpGet("{id}")]
-        public JsonResult Get(int id)
+        public async Task<JsonResult> Get(int id)
         {
-            var data = _employeeRepository.Get(id);
-            return new JsonResult(Map(data));
+            var request = new GetEmployeeRequest()
+            {
+                EmployeeId = id
+            };
+            var response = await Mediator.Send(request);
+
+            return new JsonResult(Map(response.Employee));
         }
 
         // GET api/employees/5/department-histories
         [HttpGet("{id}/department-histories")]
-        public JsonResult GetDepartmentHistories(int id)
+        public async Task<JsonResult> GetDepartmentHistories(int id)
         {
-            var data = _employeeDepartmentHistoryRepository
-                .GetHistory(id)
-                .ToList();
-            return new JsonResult(data.Select(x => Map(x)));
+            var request = new GetEmployeeHistoryRequest()
+            {
+                EmployeeId = id
+            };
+            var response = await Mediator.Send(request);
+
+            return new JsonResult(response.History.Select(x => Map(x)));
         }
 
         private EmployeeVM Map(Employee employee)
