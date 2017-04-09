@@ -1,4 +1,4 @@
-﻿    using AdventureWorks.Web.Configurations;
+﻿using AdventureWorks.Web.Configurations;
 using Autofac;
 using Microsoft.Extensions.Options;
 using WideWorldImporters.Data.Models;
@@ -7,7 +7,7 @@ namespace AdventureWorks.Web.Autofac.Modules
 {
     public class WideWorldImportersModule : DataModule
     {
-        public WideWorldImportersModule() 
+        public WideWorldImportersModule()
             : base("WideWorldImporters.Data")
         {
         }

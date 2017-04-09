@@ -17,7 +17,7 @@ namespace AdventureWorks.Aop.Interceptors
 
         public void Intercept(IInvocation invocation)
         {
-            using (var op =_logger.BeginOperation(_template, invocation.TargetType.Name, invocation.Method.Name))
+            using (var op = _logger.BeginOperation(_template, invocation.TargetType.Name, invocation.Method.Name))
             {
                 invocation.Proceed();
                 op.Complete();
