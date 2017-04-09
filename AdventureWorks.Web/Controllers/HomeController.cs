@@ -31,5 +31,10 @@ namespace AdventureWorks.Web.Controllers
         {
             return View();
         }
+
+        public IActionResult Exception()
+        {
+            throw new Exception("outer exception", new Exception("inner exception"));
+        }
     }
 }
