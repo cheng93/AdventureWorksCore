@@ -1,8 +1,8 @@
 ﻿using AdventureWorks.Data.Models;
 using AdventureWorks.Web.Configurations;
 using Autofac;
+using MediatR;
 using Microsoft.Extensions.Options;
-using System.Linq;
 using System.Reflection;
 using Module = Autofac.Module;
 
@@ -12,12 +12,10 @@ namespace AdventureWorks.Web.Autofac.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            var references = Assembly.GetEntryAssembly().GetReferencedAssemblies();
+            var adventureWorks = Assembly.Load(new AssemblyName("AdventureWorks.Data"));
 
-            var adventureWorksName = references.Single(x => x.Name == "AdventureWorks.Data");
-            var adventureWorks = Assembly.Load(adventureWorksName);
-
-            builder.RegisterAssemblyTypes(new[] { adventureWorks })
+            builder.RegisterAssemblyTypes(adventureWorks)
+                .AsClosedTypesOf(typeof(IRequestHandler<,>))
                 .AsImplementedInterfaces();
 
             builder.Register(x => 
