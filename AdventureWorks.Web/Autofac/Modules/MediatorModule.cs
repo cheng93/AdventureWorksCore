@@ -33,10 +33,10 @@ namespace AdventureWorks.Web.Autofac.Modules
               .InstancePerLifetimeScope();
 
             // .NET Core 2.0 will have AppDomain method for scanning assemblies.
-            var assemblyNames = new[] { "AdventureWorks.Data", "WideWorldImporters.Data " };
-            var assemblies = assemblyNames
-                .Select(x => new AssemblyName(x))
-                .Select(x => Assembly.Load(x));
+            //var assemblyNames = new[] { "AdventureWorks.Data", "WideWorldImporters.Data " };
+            //var assemblies = assemblyNames
+            //    .Select(x => new AssemblyName(x))
+            //    .Select(x => Assembly.Load(x));
         }
     }
 }
