@@ -1,28 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using WideWorldImporters.Data.Repositories;
+﻿using AdventureWorks.Web.Controllers;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using WideWorldImporters.Data.Commands.Order.GetOrders;
 
 namespace AdventureWorks.Web.Areas.WideWorldImporters.Controllers.Api
 {
-    [Area("WideWorldImports")]
+    [Area("WideWorldImporters")]
     [Route("[area]/api/[controller]")]
-    public class OrdersController : Controller
+    public class OrdersController : ApiController
     {
-        private readonly IOrderRepository _orderRepository;
-
-        public OrdersController(IOrderRepository orderRepository)
+        public OrdersController(IMediator mediator)
+            : base(mediator)
         {
-            _orderRepository = orderRepository;
         }
 
         // GET: api/orders
         [HttpGet]
-        public JsonResult Get()
+        public async Task<JsonResult> Get()
         {
-            var data = _orderRepository
-                .GetAll()
-                .ToList();
-            return new JsonResult(data);
+            var request = new GetOrdersRequest();
+            var response = await Mediator.Send(request);
+
+            return new JsonResult(response.Orders);
         }
     }
 }
