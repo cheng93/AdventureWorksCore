@@ -1,26 +1,21 @@
-﻿using AdventureWorks.Web.Configurations;
+﻿    using AdventureWorks.Web.Configurations;
 using Autofac;
-using MediatR;
 using Microsoft.Extensions.Options;
-using System.Reflection;
 using WideWorldImporters.Data.Models;
-using Module = Autofac.Module;
 
 namespace AdventureWorks.Web.Autofac.Modules
 {
-    public class WideWorldImportersModule : Module
+    public class WideWorldImportersModule : DataModule
     {
-        protected override void Load(ContainerBuilder builder)
+        public WideWorldImportersModule() 
+            : base("WideWorldImporters.Data")
         {
-            var wideWorldImporters = Assembly.Load(new AssemblyName("WideWorldImporters.Data"));
+        }
 
-            builder.RegisterAssemblyTypes(wideWorldImporters)
-                .AsClosedTypesOf(typeof(IRequestHandler<,>))
-                .AsImplementedInterfaces();
-
+        protected override void RegisterDataAccess(ContainerBuilder builder)
+        {
             builder.Register(x =>
                 new WideWorldImportersContext(x.Resolve<IOptions<ConnectionStringsOptions>>().Value.WideWorldImporters));
-
         }
     }
 }
