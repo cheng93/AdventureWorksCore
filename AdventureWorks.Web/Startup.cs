@@ -9,8 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Serilog.Sinks.Elasticsearch;
 using System;
+using ILogger = Serilog.ILogger;
 
 namespace AdventureWorks.Web
 {
@@ -35,20 +35,22 @@ namespace AdventureWorks.Web
         {
             // Add framework services.
             services.AddMvc();
-            
+
             services.Configure<ConnectionStringsOptions>(Configuration.GetSection("ConnectionStrings"));
-            
+
             var builder = new ContainerBuilder();
+
+            var logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(Configuration)
+                .CreateLogger();
+
+            builder.Register(c => logger).As<ILogger>();
 
             builder.AddModules();
 
             builder.Populate(services);
 
             _container = builder.Build();
-
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(Configuration)
-                .CreateLogger();
 
             return new AutofacServiceProvider(_container);
         }
@@ -60,12 +62,11 @@ namespace AdventureWorks.Web
             ILoggerFactory loggerFactory, 
             IApplicationLifetime appLifetime)
         {
-            loggerFactory.AddSerilog();
-
             if (env.IsDevelopment())
             {
                 loggerFactory.AddConsole(Configuration.GetSection("Logging"));
                 loggerFactory.AddDebug();
+
                 app.UseDeveloperExceptionPage();
 
                 // Browser Link is not compatible with Kestrel 1.1.0
