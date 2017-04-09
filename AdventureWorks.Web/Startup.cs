@@ -47,11 +47,7 @@ namespace AdventureWorks.Web
             _container = builder.Build();
 
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://localhost:9200"))
-                {
-                    AutoRegisterTemplate = true,
-                })
+                .ReadFrom.Configuration(Configuration)
                 .CreateLogger();
 
             return new AutofacServiceProvider(_container);
@@ -68,6 +64,8 @@ namespace AdventureWorks.Web
 
             if (env.IsDevelopment())
             {
+                loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+                loggerFactory.AddDebug();
                 app.UseDeveloperExceptionPage();
 
                 // Browser Link is not compatible with Kestrel 1.1.0
