@@ -11,7 +11,7 @@ namespace AdventureWorks.Aop.Interceptors
 
         private const string _template = "Executing {handler}.{method}";
 
-        private const string _exceptionTemplate = "Exeception with {handler}.{method}";
+        private const string _exceptionTemplate = "{Exeception} was thrown for {handler}.{method}";
 
         public LoggingInterceptor(ILogger logger)
         {
@@ -28,7 +28,7 @@ namespace AdventureWorks.Aop.Interceptors
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error(ex, _exceptionTemplate, invocation.TargetType.Name, invocation.Method.Name);
+                    _logger.Error(ex, _exceptionTemplate, ex.GetType().Name, invocation.TargetType.Name, invocation.Method.Name);
                     throw;
                 }
                 op.Complete();
