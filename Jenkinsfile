@@ -7,6 +7,7 @@ pipeline {
           bat 'dotnet restore'
         }
         
+        bat 'dotnet build -c Release'
       }
     }
   }
