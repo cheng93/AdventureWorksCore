@@ -10,5 +10,13 @@ pipeline {
         
       }
     }
+    stage('Test - Aop') {
+      steps {
+        dir(path: 'tests/AdventureWorks.Aop') {
+          bat 'dotnet xunit'
+        }
+        
+      }
+    }
   }
 }
