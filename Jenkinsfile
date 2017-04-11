@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Test') {
+    stage('Build') {
       steps {
-        echo 'Hello World'
+        git(url: 'git@github.com:cheng93/AdventureWorksCore.git', branch: 'jenkins', changelog: true, poll: true)
       }
     }
   }
