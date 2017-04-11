@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        bat 'dotnet restore'
         dir(path: 'src/AdventureWorks.Web') {
-          bat 'dotnet restore'
           bat 'dotnet build -c Release'
         }
         
