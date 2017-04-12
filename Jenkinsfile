@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        bat 'echo ${GIT_BRANCH}'
+        bat 'echo ${env.GIT_BRANCH}'
       }
     }
   }
