@@ -18,12 +18,12 @@ pipeline {
       }
     }
     stage('Deploy') {
-      when  {
-        branch 'master'
-      }
-      steps {
-        echo 'master'
-      }
+      // when  {
+      //   branch 'master'
+      // }
+      // steps {
+      //   echo 'master'
+      // }
       when  {
         branch 'jenkins-deploy'
       }
