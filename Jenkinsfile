@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Deploy') {
       when  {
-        branch 'jenkins-deploy'
+        branch 'master'
       }
       steps {
         dir(path: 'src/AdventureWorks.Web') {
