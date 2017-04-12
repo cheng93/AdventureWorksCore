@@ -7,6 +7,8 @@ pipeline {
         bat 'dotnet restore'
         dir(path: 'src/AdventureWorks.Web') {
           bat 'dotnet build -c Release'
+          bat 'npm install'
+          bat 'npm run build'
         }
       }
     }
