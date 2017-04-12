@@ -25,7 +25,7 @@ pipeline {
         dir(path: 'src/AdventureWorks.Web') {
           bat '''del /q "%builds%\\AdventureWorks\\*"
               FOR /D %%p IN ("%builds%\\AdventureWorks\\*.*") DO rmdir "%%p" /s /q'''
-          bat 'dotnet publish -c Release %builds%\AdventureWorks'
+          bat 'dotnet publish -c Release %builds%\\AdventureWorks'
         }
       }
     }
