@@ -18,8 +18,17 @@ pipeline {
       }
     }
     stage('Deploy') {
+      when  {
+        branch 'master'
+      }
       steps {
-        bat 'echo ${env.GIT_BRANCH}'
+        echo 'master'
+      }
+      when  {
+        branch 'jenkins-deploy'
+      }
+      steps {
+        echo 'not master'
       }
     }
   }
