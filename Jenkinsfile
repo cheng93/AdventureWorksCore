@@ -1,3 +1,4 @@
+#!groovy 
 pipeline {
   agent any
   stages {
@@ -7,7 +8,6 @@ pipeline {
         dir(path: 'src/AdventureWorks.Web') {
           bat 'dotnet build -c Release'
         }
-        
       }
     }
     stage('Test - Aop') {
@@ -15,7 +15,11 @@ pipeline {
         dir(path: 'tests/AdventureWorks.Aop.Tests') {
           bat 'dotnet xunit'
         }
-        
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo ${GIT_BRANCH}
       }
     }
   }
