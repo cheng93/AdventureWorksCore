@@ -34,8 +34,8 @@ pipeline {
   }
   post {
     always {
-      archive '/AdventureWorks.Web/bin/Release/*'
       junit 'tests/**/*.xml'
+      archive '/AdventureWorks.Web/bin/Release/*'
     }
   }
 }
