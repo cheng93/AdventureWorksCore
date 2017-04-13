@@ -9,9 +9,9 @@ namespace AdventureWorks.Aop.Interceptors
     {
         private readonly ILogger _logger;
 
-        private const string _template = "Executing {handler}.{method}";
+        private const string _template = "Executing {method}";
 
-        private const string _exceptionTemplate = "{Exeception} was thrown for {handler}.{method}";
+        private const string _exceptionTemplate = "{Exeception} was thrown for {method}";
 
         public LoggingInterceptor(ILogger logger)
         {
@@ -20,7 +20,8 @@ namespace AdventureWorks.Aop.Interceptors
 
         public void Intercept(IInvocation invocation)
         {
-            using (var op = _logger.BeginOperation(_template, invocation.TargetType.Name, invocation.Method.Name))
+            var method = $"{invocation.TargetType.FullName}.{invocation.Method.Name}";
+            using (var op = _logger.BeginOperation(_template, new object[] { method }))
             {
                 try
                 {
@@ -28,7 +29,7 @@ namespace AdventureWorks.Aop.Interceptors
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error(ex, _exceptionTemplate, ex.GetType().Name, invocation.TargetType.Name, invocation.Method.Name);
+                    _logger.Error(ex, _exceptionTemplate, ex.GetType().Name, method);
                     throw;
                 }
                 op.Complete();
