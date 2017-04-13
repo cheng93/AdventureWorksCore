@@ -38,6 +38,7 @@ pipeline {
       step([$class: 'XUnitBuilder',
         thresholds: [[$class: 'FailedThreshold', unstableThreshold: '1']],
         tools: [[$class: 'XUnitDotNetTestType', pattern: 'tests/**/TestResult.xml']]])
+      deleteDir()
     }
   }
 }
