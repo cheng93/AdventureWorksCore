@@ -34,10 +34,10 @@ pipeline {
   }
   post {
     always {
+      archiveArtifacts 'src/AdventureWorks.Web/bin/Release/**/*.*'
       step([$class: 'XUnitBuilder',
         thresholds: [[$class: 'FailedThreshold', unstableThreshold: '1']],
         tools: [[$class: 'XUnitDotNet', pattern: 'tests/**/TestResult.xml']]])
-      archiveArtifacts 'src/AdventureWorks.Web/bin/Release/**/*.*'
     }
   }
 }
