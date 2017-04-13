@@ -34,8 +34,10 @@ pipeline {
   }
   post {
     always {
-      junit 'tests/**/*.xml'
-      archive '/AdventureWorks.Web/bin/Release/*'
+      step([$class: 'XUnitBuilder',
+        thresholds: [[$class: 'FailedThreshold', unstableThreshold: '1']],
+        tools: [[$class: 'JUnitType', pattern: 'tests/**/TestResult.xml']]])
+      archiveArtifacts 'src/AdventureWorks.Web/bin/Release/**/*.*'
     }
   }
 }
