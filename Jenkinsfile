@@ -36,7 +36,7 @@ pipeline {
     always {
       step([$class: 'XUnitBuilder',
         thresholds: [[$class: 'FailedThreshold', unstableThreshold: '1']],
-        tools: [[$class: 'JUnitType', pattern: 'tests/**/TestResult.xml']]])
+        tools: [[$class: 'XUnitDotNet', pattern: 'tests/**/TestResult.xml']]])
       archiveArtifacts 'src/AdventureWorks.Web/bin/Release/**/*.*'
     }
   }
