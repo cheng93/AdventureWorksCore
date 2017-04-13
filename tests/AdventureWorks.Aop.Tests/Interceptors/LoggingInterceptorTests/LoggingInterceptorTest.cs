@@ -24,8 +24,8 @@ namespace AdventureWorks.Aop.Tests.Interceptors.LoggingInterceptorTests
 
             var typeMock = new Mock<Type>();
             typeMock
-                .Setup(x => x.Name)
-                .Returns(TypeName);
+                .Setup(x => x.FullName)
+                .Returns(FullName);
 
             InvocationMock
                 .Setup(x => x.TargetType)
@@ -45,9 +45,10 @@ namespace AdventureWorks.Aop.Tests.Interceptors.LoggingInterceptorTests
         protected Mock<ILogger> LoggerMock { get; set; } = new Mock<ILogger>();
         protected Mock<IInvocation> InvocationMock { get; set; } = new Mock<IInvocation>();
 
-        protected string TypeName => "Type";
+        protected string FullName => "Namespace.Type";
         protected string MethodName => "Method";
-        protected string Template => "Executing {handler}.{method}";
+        protected string FullMethodName => $"{FullName}.{MethodName}";
+        protected string Template => "Executing {method}";
     }
 
     public class LoggingInterceptorTests_InvocationSuccess : LoggingInterceptorTest
@@ -60,8 +61,7 @@ namespace AdventureWorks.Aop.Tests.Interceptors.LoggingInterceptorTests
             LoggerMock.Verify(x => x.Write(
                 LogEventLevel.Information, 
                 It.Is<string>(y => y.StartsWith(Template)), 
-                TypeName, 
-                MethodName,
+                FullMethodName,
                 It.IsAny<string>(),
                 It.IsAny<double>()));
         }
@@ -80,7 +80,7 @@ namespace AdventureWorks.Aop.Tests.Interceptors.LoggingInterceptorTests
                 .Throws<ArgumentException>();
         }
 
-        protected string ExceptionTemplate => "{Exeception} was thrown for {handler}.{method}";
+        protected string ExceptionTemplate => "{Exeception} was thrown for {method}";
         protected string ExceptionName => "ArgumentException";
 
         [Fact]
@@ -91,8 +91,7 @@ namespace AdventureWorks.Aop.Tests.Interceptors.LoggingInterceptorTests
             LoggerMock.Verify(x => x.Write(
                 LogEventLevel.Warning,
                 It.Is<string>(y => y.StartsWith(Template)),
-                TypeName,
-                MethodName,
+                FullMethodName,                
                 It.IsAny<string>(),
                 It.IsAny<double>()));
         }
@@ -106,8 +105,7 @@ namespace AdventureWorks.Aop.Tests.Interceptors.LoggingInterceptorTests
                 exception,
                 ExceptionTemplate,
                 ExceptionName,
-                TypeName,
-                MethodName));
+                FullMethodName));
         }
     }
 }
