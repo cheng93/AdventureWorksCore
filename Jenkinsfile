@@ -25,8 +25,8 @@ pipeline {
         dir(path: 'src/AdventureWorks.Web') {
           bat 'npm install'
           bat 'npm run build'
-          bat '''del /q "%builds%/AdventureWorks/*"
-              FOR /D %%p IN ("%builds%/AdventureWorks/*.*") DO rmdir "%%p" /s /q'''
+          bat '''del /q "%builds%\\AdventureWorks\\*"
+              FOR /D %%p IN ("%builds%\\AdventureWorks\\*.*") DO rmdir "%%p" /s /q'''
           bat 'dotnet publish AdventureWorks.Web.csproj -c Release -o %builds%/AdventureWorks'
         }
       }
