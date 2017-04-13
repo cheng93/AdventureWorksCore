@@ -37,7 +37,7 @@ pipeline {
       archiveArtifacts 'src/AdventureWorks.Web/bin/Release/**/*.*'
       step([$class: 'XUnitBuilder',
         thresholds: [[$class: 'FailedThreshold', unstableThreshold: '1']],
-        tools: [[$class: 'XUnitDotNet', pattern: 'tests/**/TestResult.xml']]])
+        tools: [[$class: 'XUnitDotNetTestType', pattern: 'tests/**/TestResult.xml']]])
     }
   }
 }
