@@ -52,18 +52,20 @@ namespace AdventureWorks.Aop.Tests.Interceptors.LoggingInterceptorTests
     }
 
     public class LoggingInterceptorTests_InvocationSuccess : LoggingInterceptorTest
-    { 
+    {
         [Fact]
         public void LoggerShouldLog()
         {
             Subject.Intercept(InvocationMock.Object);
 
             LoggerMock.Verify(x => x.Write(
-                LogEventLevel.Information, 
-                It.Is<string>(y => y.StartsWith(Template)), 
-                FullMethodName,
-                It.IsAny<string>(),
-                It.IsAny<double>()));
+                LogEventLevel.Information,
+                It.Is<string>(y => y.StartsWith(Template)),
+                new object[] {
+                    FullMethodName,
+                    It.IsAny<string>(),
+                    It.IsAny<double>()
+                }));
         }
     }
 
@@ -91,9 +93,11 @@ namespace AdventureWorks.Aop.Tests.Interceptors.LoggingInterceptorTests
             LoggerMock.Verify(x => x.Write(
                 LogEventLevel.Warning,
                 It.Is<string>(y => y.StartsWith(Template)),
-                FullMethodName,                
-                It.IsAny<string>(),
-                It.IsAny<double>()));
+                new object[] {
+                    FullMethodName,
+                    It.IsAny<string>(),
+                    It.IsAny<double>()
+                }));
         }
 
         [Fact]
