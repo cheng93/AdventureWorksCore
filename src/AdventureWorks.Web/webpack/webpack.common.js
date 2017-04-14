@@ -6,9 +6,9 @@ var root = './Scripts/js/';
 
 module.exports = {
   entry: {
-    'polyfills.angular': root + 'polyfills.ts',
-    'vendor.angular': root + 'vendor.ts',
-    'app.angular': root + 'main.ts'
+    'polyfills.angular': root + 'angular/polyfills.ts',
+    'vendor.angular': root + 'angular/vendor.ts',
+    'app.angular': root + 'angular/main.ts'
   },
 
   output: {
