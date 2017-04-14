@@ -6,9 +6,9 @@ var root = './Scripts/js/';
 
 module.exports = {
   entry: {
-    'polyfills': root + 'polyfills.ts',
-    'vendor': root + 'vendor.ts',
-    'app': root + 'main.ts'
+    'polyfills.angular': root + 'polyfills.ts',
+    'vendor.angular': root + 'vendor.ts',
+    'app.angular': root + 'main.ts'
   },
 
   output: {
@@ -50,7 +50,7 @@ module.exports = {
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor', 'polyfills'],
+      name: ['app.angular', 'vendor.angular', 'polyfills.angular'],
       minChunks: Infinity
     }),
     new ExtractTextPlugin('./css/[name].css')
