@@ -75,7 +75,7 @@ namespace AdventureWorks.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseStatusCodePages();
             }
 
             app.UseMiddleware<SerilogMiddleware>();
