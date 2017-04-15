@@ -28,7 +28,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loaders: ['ts-loader', 'angular2-template-loader'],
+        loaders: ['babel-loader', 'awesome-typescript-loader', 'angular2-template-loader'],
         exclude: exclusionRegex
       },
       {
