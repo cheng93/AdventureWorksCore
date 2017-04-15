@@ -10,9 +10,6 @@ module.exports = webpackMerge(commonConfig, {
             'process.env': {
                 'NODE_ENV': JSON.stringify('development')
             }
-        }),
-        // new BundleAnalyzerPlugin({
-        //     analyzerMode: 'static'
-        // })
+        })
     ]
 });
