@@ -1,4 +1,6 @@
 // JS Modules
+import 'zone.js';
+
 import '@angular/platform-browser';
 import '@angular/platform-browser-dynamic';
 import '@angular/core';
@@ -17,4 +19,4 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 import 'font-awesome/css/font-awesome.css';
 
 import 'primeng/resources/primeng.css';
-import 'primeng/resources/themes/bootstrap/theme.css';
+import 'primeng/resources/themes/bootstrap/theme.css';  
