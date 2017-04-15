@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace AdventureWorks.Web.Areas.AdventureWorks.Controllers
 {
     [Area("AdventureWorks")]
@@ -13,7 +11,8 @@ namespace AdventureWorks.Web.Areas.AdventureWorks.Controllers
         [HttpGet("{id}")]
         public IActionResult Index()
         {
-            return View();
+            ViewData["Title"] = "Employees";
+            return View("~/Areas/AdventureWorks/Views/Shared/_AdventureWorks.cshtml");
         }
     }
 }

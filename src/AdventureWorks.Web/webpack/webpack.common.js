@@ -3,12 +3,15 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var root = './Scripts/js/';
+var exclusionRegex = [/node_modules/];
 
 module.exports = {
   entry: {
-    'polyfills.angular': root + 'polyfills.ts',
-    'vendor.angular': root + 'vendor.ts',
-    'app.angular': root + 'main.ts'
+    'vendor.angular': root + 'angular/vendor.ts',
+    'app.angular': root + 'angular/main.ts',
+
+    'vendor.react': root + 'react/vendor.js',
+    'app.react': root + 'react/main.jsx'
   },
 
   output: {
@@ -18,14 +21,20 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js', '.jsx']
   },
 
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loaders: ['ts-loader', 'angular2-template-loader']
+        loaders: ['ts-loader', 'angular2-template-loader'],
+        exclude: exclusionRegex
+      },
+      {
+        test: /\.jsx?$/,
+        loaders: ['babel-loader'],
+        exclude: exclusionRegex
       },
       {
         test: /\.html$/,
@@ -49,10 +58,24 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.ContextReplacementPlugin(
+        /angular(\\|\/)core(\\|\/)@angular/,
+        path.resolve(root),
+        {}
+    ), 
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app.angular', 'vendor.angular', 'polyfills.angular'],
+      names: ['vendor.react'],
+      chunks: ['app.react', 'vendor.react'],
       minChunks: Infinity
     }),
-    new ExtractTextPlugin('./css/[name].css')
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor.angular'],
+      chunks: ['app.angular', 'vendor.angular'],
+      minChunks: Infinity
+    }),
+    new ExtractTextPlugin({
+      filename: './css/[name].css',
+      allChunks: true
+    })
   ]
 };

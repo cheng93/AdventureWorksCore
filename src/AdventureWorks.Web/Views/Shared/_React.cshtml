@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head{
+    @Html.Partial("_Head.cshtml")
+}
+
+<div id="app"></div>
+
+@RenderBody()
+
+@section js{
+    <script src="~/js/vendor.react.js"></script>
+    <script src="~/js/app.react.js"></script>
+}
