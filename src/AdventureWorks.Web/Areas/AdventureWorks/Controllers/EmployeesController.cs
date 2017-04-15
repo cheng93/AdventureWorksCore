@@ -11,7 +11,6 @@ namespace AdventureWorks.Web.Areas.AdventureWorks.Controllers
         [HttpGet("{id}")]
         public IActionResult Index()
         {
-            ViewData["Title"] = "Employees";
             return View("~/Areas/AdventureWorks/Views/Shared/_AdventureWorks.cshtml");
         }
     }
