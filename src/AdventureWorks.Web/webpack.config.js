@@ -1,1 +1,5 @@
-module.exports = require('./webpack/webpack.dev.js');
+function buildConfig(env) {
+  return require('./webpack/webpack.' + env + '.js');
+}
+
+module.exports = buildConfig;
