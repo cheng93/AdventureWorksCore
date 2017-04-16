@@ -12,6 +12,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "axios": "^0.16.1",
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
     "primeng": "^4.0.0-rc.2",
@@ -45,7 +46,7 @@
     "clean": "rimraf wwwroot/*",
     "build": "npm run clean && webpack --env=prod",
     "build:dev": "npm run clean && webpack --env=dev",
-    "watch": "webpack --watch --progress --env=dev"
+    "watch": "npm run clean && webpack --watch --progress --env=dev"
   },
   "author": "cheng93",
   "license": "ISC"
