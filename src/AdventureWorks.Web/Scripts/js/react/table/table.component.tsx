@@ -4,7 +4,7 @@ import { TableHead } from './table-head.component';
 import { TableBody } from './table-body.component';
 
 export class Table extends Component {
-  constructor(props) {
+  constructor(private props) {
     super(props);
   }
 
