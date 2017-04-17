@@ -2,8 +2,8 @@
 using AdventureWorks.Data.Commands.Employee.GetEmployeeHistory;
 using AdventureWorks.Data.Commands.Employee.GetEmployees;
 using AdventureWorks.Data.Models;
+using AdventureWorks.Web.Areas.AdventureWorks.Models;
 using AdventureWorks.Web.Controllers;
-using AdventureWorks.Web.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
