@@ -1,41 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import { Table } from '../../table/table.component';
+import { fetchOrders } from './orders.actions';
 
 const columns = [
-  { key: 'id', name: 'ID' },
-  { key: 'title', name: 'Title' },
-  { key: 'count', name: 'Count' }
+  { key: 'orderId', name: 'ID' },
+  { key: 'customerId', name: 'Customer' },
+  { key: 'orderDate', name: 'Order Date' }
 ];
 
-function getRows() {
-  let rows = [];
-  for (let i = 1; i < 1000; i++) {
-    rows.push({
-      id: i,
-      title: 'Title ' + i,
-      count: i * 1000
-    });
-  }
-
-  return rows;
+function mapStateToProps(state) {
+  return {
+    rows: state.orders.items,
+    columns: columns
+  };
 }
 
-export class Orders extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      _columns: columns,
-      _rows: getRows()
-    };
-  }
-  
-  render() {
-    return (
-      <div>
-        <h2>Orders</h2>
-        <Table columns={this.state._columns}
-          rows={this.state._rows} />
-      </div>
-    );
+function mapDispatchToProps(dispatch) {
+  return {
+    onLoad: () => dispatch(fetchOrders())
   }
 }
+
+export const Orders = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Table);
