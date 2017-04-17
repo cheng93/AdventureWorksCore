@@ -6,7 +6,8 @@ namespace AdventureWorks.Web.Areas.WideWorldImporters.Controllers
     public class OrdersController : Controller
     {
         // GET: /<controller>/
-        [HttpGet]
+        [Route("")]
+        [Route("{id}")]
         public IActionResult Index()
         {
             return View("~/Areas/WideWorldImporters/Views/Shared/_WideWorldImporters.cshtml");

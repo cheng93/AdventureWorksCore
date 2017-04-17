@@ -7,8 +7,8 @@ namespace AdventureWorks.Web.Areas.AdventureWorks.Controllers
     public class EmployeesController : Controller
     {
         // GET: /<controller>/
-        [HttpGet]
-        [HttpGet("{id}")]
+        [Route("")]
+        [Route("{id}")]
         public IActionResult Index()
         {
             return View("~/Areas/AdventureWorks/Views/Shared/_AdventureWorks.cshtml");
