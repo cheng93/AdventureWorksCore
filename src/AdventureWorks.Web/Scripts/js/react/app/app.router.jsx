@@ -6,11 +6,9 @@ import { OrdersRouter } from '../orders/orders.router';
 
 export function AppRouter() {
   return (
-    <Router basename='/WideWorldImporters/'>
-      <div>
-        <Route exact path="/" component={App} />
-        <Route path="/orders" component={OrdersRouter} />
-      </div>
-    </Router>
+    <div>
+      <Route exact path="/" component={App} />
+      <Route path="/orders" component={OrdersRouter} />
+    </div>
   );
 }
