@@ -1,6 +1,12 @@
 ﻿// JS Modules
 import 'react';
 import 'react-dom';
+import 'react-router-dom';
+import 'react-redux';
+import 'redux';
+import 'redux-thunk';
+
+import 'axios';
 
 // CSS Modules
 import 'bootstrap/dist/css/bootstrap.css';
