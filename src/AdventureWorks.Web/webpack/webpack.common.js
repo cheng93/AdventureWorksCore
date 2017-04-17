@@ -3,7 +3,8 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var root = './Scripts/js/';
-var exclusionRegex = [/node_modules/];
+var nodeRegex = /node_modules/;
+var angularRegex = /Scripts\/js\/angular/;
 
 module.exports = {
   entry: {
@@ -29,12 +30,18 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loaders: ['babel-loader', 'awesome-typescript-loader', 'angular2-template-loader'],
-        exclude: exclusionRegex
+        exclude: nodeRegex,
+        include: angularRegex
+      },
+      {
+        test: /\.tsx?$/,
+        loaders: ['babel-loader', 'awesome-typescript-loader'],
+        exclude: [nodeRegex, angularRegex]
       },
       {
         test: /\.jsx?$/,
         loaders: ['babel-loader'],
-        exclude: exclusionRegex
+        exclude: nodeRegex
       },
       {
         test: /\.html$/,
@@ -59,10 +66,10 @@ module.exports = {
 
   plugins: [
     new webpack.ContextReplacementPlugin(
-        /angular(\\|\/)core(\\|\/)@angular/,
-        path.resolve(root),
-        {}
-    ), 
+      /angular(\\|\/)core(\\|\/)@angular/,
+      path.resolve(root),
+      {}
+    ),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor.react'],
       chunks: ['app.react', 'vendor.react'],
