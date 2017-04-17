@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 
-function TableBodyRow(props) {
+function TableBodyRow({ row }) {
   return (
     <tr>
-      <td>{props.row.orderId}</td>
-      <td>{props.row.customerId}</td>
-      <td>{props.row.orderDate}</td>
+      <td>{row.id}</td>
+      <td>{row.customer.name}</td>
+      <td>{row.orderDate}</td>
     </tr>
   )
 }
 
-export class TableBody extends Component {
-  render() {
-    const tableRows = this.props.rows
-      .map(row =>
-        <TableBodyRow key={row.orderId} row={row} />
-      );
-
-    return (
-      <tbody>
-        {tableRows}
-      </tbody>
+export function TableBody({ rows }) {
+  const tableRows = rows
+    .map(row =>
+      <TableBodyRow key={row.id} row={row} />
     );
-  }
+
+  return (
+    <tbody>
+      {tableRows}
+    </tbody>
+  );
+
 }
