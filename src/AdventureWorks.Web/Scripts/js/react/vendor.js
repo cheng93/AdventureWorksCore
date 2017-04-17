@@ -2,9 +2,11 @@
 import 'react';
 import 'react-dom';
 import 'react-router-dom';
+import 'react-router-redux';
 import 'react-redux';
 import 'redux';
 import 'redux-thunk';
+import 'history';
 
 import 'axios';
 
