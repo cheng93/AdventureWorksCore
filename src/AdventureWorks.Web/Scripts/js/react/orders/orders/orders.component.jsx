@@ -6,7 +6,7 @@ import { fetchOrders } from './orders.actions';
 
 const columns = [
   { key: 'orderId', name: 'ID' },
-  { key: 'customerId', name: 'Customer' },
+  { key: 'customer', name: 'Customer' },
   { key: 'orderDate', name: 'Order Date' }
 ];
 
