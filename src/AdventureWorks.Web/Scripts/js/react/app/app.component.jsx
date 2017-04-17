@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 
 import { AppRouter } from './app.router';
 
-
-export class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return <AppRouter />
-  }
+export function App({store}) {
+    return (
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
+    );
 }
