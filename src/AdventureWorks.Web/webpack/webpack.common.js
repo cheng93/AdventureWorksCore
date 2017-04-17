@@ -3,8 +3,8 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var root = './Scripts/js/';
-var nodeRegex = /node_modules/;
-var angularRegex = /Scripts\/js\/angular/;
+var node_modules_condition = /node_modules/;
+var angular_condition = path.resolve(__dirname, '../Scripts/js/angular/');
 
 module.exports = {
   entry: {
@@ -12,7 +12,7 @@ module.exports = {
     'app.angular': root + 'angular/main.ts',
 
     'vendor.react': root + 'react/vendor.js',
-    'app.react': root + 'react/main.jsx'
+    'app.react': root + 'react/main.tsx'
   },
 
   output: {
@@ -22,7 +22,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.ts', '.js', '.jsx']
+    extensions: ['.ts', '.js', '.jsx', '.tsx']
   },
 
   module: {
@@ -30,18 +30,20 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loaders: ['babel-loader', 'awesome-typescript-loader', 'angular2-template-loader'],
-        exclude: nodeRegex,
-        include: angularRegex
+        exclude: node_modules_condition,
+        include: angular_condition
       },
       {
         test: /\.tsx?$/,
         loaders: ['babel-loader', 'awesome-typescript-loader'],
-        exclude: [nodeRegex, angularRegex]
+        exclude: {
+          or: [node_modules_condition, angular_condition]
+        }
       },
       {
         test: /\.jsx?$/,
         loaders: ['babel-loader'],
-        exclude: nodeRegex
+        exclude: node_modules_condition
       },
       {
         test: /\.html$/,
