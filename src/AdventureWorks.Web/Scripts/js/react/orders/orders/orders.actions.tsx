@@ -11,7 +11,7 @@ export function loadingOrders() {
   };
 }
 
-export function receivedOrders(orders) {
+export function receivedOrders(orders: Order[]) {
   return {
     type: ORDERS_RECEIVED,
     orders
@@ -25,6 +25,6 @@ export function fetchOrders() {
     dispatch(loadingOrders());
     return axios.get(endpoint)
       .then(response => response.data as Order[])
-      .then(json => dispatch(receivedOrders(json)));
+      .then(orders => dispatch(receivedOrders(orders)));
   };
 }

@@ -10,6 +10,8 @@ import 'history';
 
 import 'axios';
 
+import 'moment';
+
 // CSS Modules
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';

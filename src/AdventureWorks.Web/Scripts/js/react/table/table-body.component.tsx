@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
+import moment from 'moment';
+
 function TableBodyRow({ row }) {
+  let orderDate = moment(row.orderDate).format('DD MMM YYYY');
   return (
     <tr>
       <td>{row.id}</td>
       <td>{row.customer.name}</td>
-      <td>{row.orderDate}</td>
+      <td>{orderDate}</td>
     </tr>
   )
 }

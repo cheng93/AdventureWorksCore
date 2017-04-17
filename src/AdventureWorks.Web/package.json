@@ -15,6 +15,7 @@
     "axios": "^0.16.1",
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
+    "moment": "^2.18.1",
     "primeng": "^4.0.0-rc.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
