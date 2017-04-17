@@ -8,6 +8,10 @@ export class Table extends Component {
     super(props);
   }
 
+ componentDidMount() {
+    this.props.onLoad();
+  }
+
   render() {
     return (
       <table className="table table-striped">
