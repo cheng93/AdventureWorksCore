@@ -1,4 +1,5 @@
 ﻿using AdventureWorks.Common.Commands.EFCore;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using WideWorldImporters.Data.Models;
 
@@ -14,6 +15,7 @@ namespace WideWorldImporters.Data.Commands.Order.GetOrders
         public override GetOrdersResponse Handle(GetOrdersRequest message)
         {
             var orders = DbContext.Orders
+                .Include(x => x.Customer)
                 .Apply(message.Settings)
                 .ToList();
 
